@@ -1,5 +1,7 @@
 package com.rakib.jwtsecurity.config;
 
+import com.rakib.jwtsecurity.dto.UserPrinciple;
+import com.rakib.jwtsecurity.user.User;
 import com.rakib.jwtsecurity.user.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -13,6 +15,10 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Objects;
+
+import static com.rakib.jwtsecurity.dto.UserPrinciple.createPrinciple;
+
 @Configuration
 @RequiredArgsConstructor
 public class ApplicationConfig {
@@ -21,8 +27,12 @@ public class ApplicationConfig {
 
     @Bean
     public UserDetailsService userDetailsService() {
-        return username -> userRepository.findByEmail(username)
-                .orElseThrow(() -> new UsernameNotFoundException("User Not Found"));
+        return username -> {
+            User user = userRepository.findByEmail(username)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            UserPrinciple userPrinciple = createPrinciple(user);
+            return Objects.nonNull(userPrinciple) ? userPrinciple : null;
+        };
     }
 
     @Bean
