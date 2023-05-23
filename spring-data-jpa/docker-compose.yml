@@ -1,13 +1,14 @@
 version: '3.7'
 services:
-  db:
+  spring-jpa-db:
     image: mysql:latest
     ports:
       - '3306:3306'
+    restart: always
     environment:
-      - MYSQL_ROOT_PASSWORD=your_password
-      - MYSQL_DATABASE=your_database
-      - MYSQL_USER=your_username
-      - MYSQL_PASSWORD=your_user_password
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=spring-jpa-mapping
     volumes:
-      - ./data:/var/lib/mysql
+      - db:/var/lib/mysql
+volumes:
+  db:
