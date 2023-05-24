@@ -1,9 +1,11 @@
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/spring-jpa-mapping?useSSL=false
+    url: jdbc:postgresql://localhost:5432/mydatabase
     username: root
     password: password
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
