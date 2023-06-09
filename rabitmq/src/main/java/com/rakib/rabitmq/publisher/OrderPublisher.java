@@ -29,7 +29,7 @@ public class OrderPublisher {
         order.setOrderId(UUID.randomUUID().toString());
         //restaurant service
         //payment service
-        OrderStatus orderStatus = new OrderStatus(order, "PROCESS", "order placed succesfully in "
+        OrderStatus orderStatus = new OrderStatus(order, "PROCESS", "order placed successfully in "
                 + restaurantName);
         template.convertAndSend(exchange, routingQueue, orderStatus);
         return "Success !!";
