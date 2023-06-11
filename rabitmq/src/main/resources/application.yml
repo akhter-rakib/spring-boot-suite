@@ -8,6 +8,8 @@ spring:
     password: guest
 
 rabbitmq:
-  queue: private_queue
+  queue_en: q.en_translation_queue
+  queue_jp: q.jp_translation_queue
+  routing-key_en: en_private-routing-key
+  routing-key_jp: jp_private-routing-key
   exchange: private_exchange_queue
-  routing-key: private-routing-key
