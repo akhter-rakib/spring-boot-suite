@@ -3,7 +3,7 @@
 ```bash
 git clone https://github.com/akhter-rakib/spring-boot-3.0.git
 ```
-2. Go to  translation-engine/ folder
+2. Go to  rabitmq/ folder
 
 3. For the docker image fire the bellow command
 
