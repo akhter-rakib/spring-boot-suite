@@ -18,7 +18,7 @@ multiple requests simultaneously. This is how we can handle a large number of co
 a relatively small number of threads. That's the essence of reactive programming.
 
 ### BackPressure On Data Streams
-![Back Press](back press.png)
+![Back Press](back_press.png)
 Consider a scenario where the database returns a large volume of data as a response. In such cases, 
 traditional REST APIs lack a back pressure feature, which can lead to issues like application crashes
 due to out-of-memory errors. However, reactive programming introduces the concept of back pressure. 
