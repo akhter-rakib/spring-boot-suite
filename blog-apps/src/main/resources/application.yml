@@ -1,0 +1,13 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3308/kotlin_demo_app?autoReconnect=true&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true&useSSL=false
+    username: admin
+    password: password
+  jpa:
+    generate-ddl: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+server:
+  port: 2020
