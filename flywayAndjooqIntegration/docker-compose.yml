@@ -1,0 +1,17 @@
+version: '3.7'
+services:
+  flywayjooq:
+    image: postgres:14.4
+    ports:
+      - 5435:5432
+    environment:
+      - POSTGRES_DB=flyway_jooq
+      - POSTGRES_USER=rakib
+      - POSTGRES_PASSWORD=nothing
+    volumes:
+      - "./postgresql/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+      - flywayjooq-db-volume:/var/lib/postgresql/data:rw
+
+volumes:
+  flywayjooq-db-volume:
+    external: true
