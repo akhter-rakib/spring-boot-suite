@@ -5,8 +5,9 @@ import com.rakib.solidprinciple.service.InterestCalculator;
 import org.springframework.stereotype.Service;
 
 @Service
-public class SavingsAccountInterestCalculator implements InterestCalculator {
-    private static final double INTEREST_RATE = 0.05;
+public class LoanAccountInterestCalculator implements InterestCalculator {
+
+    private static final double INTEREST_RATE = 0.015;
 
     @Override
     public double calculateInterest(double balance) {
@@ -15,6 +16,6 @@ public class SavingsAccountInterestCalculator implements InterestCalculator {
 
     @Override
     public AccountType getAccountType() {
-        return AccountType.SAVINGS;
+        return AccountType.LOAN;
     }
 }

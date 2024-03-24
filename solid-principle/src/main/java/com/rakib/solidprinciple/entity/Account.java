@@ -20,4 +20,5 @@ public class Account {
     private String phone;
     private String email;
     private AccountType accountType;
+    private double interest;
 }
