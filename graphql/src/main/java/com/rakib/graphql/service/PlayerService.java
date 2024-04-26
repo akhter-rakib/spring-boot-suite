@@ -40,7 +40,7 @@ public class PlayerService {
 
     public Player updatePlayer(Integer id, String name, Team team) {
         Player updatedPlayer = new Player(id, name, team);
-        Optional<Player> optional = players.stream().filter(c -> c.id() == id).findFirst();
+        Optional<Player> optional = players.stream().filter(c -> Objects.equals(c.id(), id)).findFirst();
         if (optional.isPresent()) {
             Player player = optional.get();
             int index = players.indexOf(player);
