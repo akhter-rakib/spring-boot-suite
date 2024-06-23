@@ -1,9 +1,12 @@
 package com.rakib.mailhogspringintegration.service;
 
 import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
 
 import java.io.File;
@@ -22,7 +25,19 @@ public class EmailServiceImpl implements EmailService {
 
     @Override
     public void sendHtmlMessage(String to, String subject, String text, List<File> attachments) throws MessagingException {
-
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message, true);
+        helper.setFrom(senderEmail);
+        helper.setTo(to);
+        helper.setSubject(subject);
+        helper.setText(text, true); // true indicates HTML
+        if (attachments != null) {
+            for (File file : attachments) {
+                FileSystemResource fileResource = new FileSystemResource(file);
+                helper.addAttachment(file.getName(), fileResource);
+            }
+        }
+        mailSender.send(message);
     }
 
     @Override
@@ -34,6 +49,5 @@ public class EmailServiceImpl implements EmailService {
         message.setText(text);
 
         mailSender.send(message);
-
     }
 }
